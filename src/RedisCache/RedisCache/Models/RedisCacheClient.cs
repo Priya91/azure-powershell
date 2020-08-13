@@ -30,6 +30,7 @@ namespace Microsoft.Azure.Commands.RedisCache
     using Models;
     using System;
     using Properties;
+    using System.Linq;
 
     public class RedisCacheClient
     {
@@ -283,10 +284,11 @@ namespace Microsoft.Azure.Commands.RedisCache
             _client.Redis.ExportData(resourceGroupName: resourceGroupName, name: cacheName, parameters: parameters);
         }
 
-        public void RebootCache(string resourceGroupName, string cacheName, string rebootType, int? shardId)
+        public void RebootCache(string resourceGroupName, string cacheName, string rebootType, int? shardId, int[] ports)
         {
             RedisRebootParameters parameters = new RedisRebootParameters();
             parameters.RebootType = rebootType;
+            parameters.Ports = ports.Select(p => (int?)p).ToArray();
             if (shardId.HasValue)
             {
                 parameters.ShardId = shardId;

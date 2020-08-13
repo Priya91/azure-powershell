@@ -18,6 +18,9 @@
         - Additional information about change #1
 -->
 ## Upcoming Release
+* Added `Ports` parameter in `Reset-AzRedisCache`
+* Changed parameter `RebootType` on `Reset-AzRedisCache` to not be mandatory
+* Changed output of `Get-AzRedisCache` to include `Instances`
 
 ## Version 1.2.1
 * Update references in .psd1 to use relative path

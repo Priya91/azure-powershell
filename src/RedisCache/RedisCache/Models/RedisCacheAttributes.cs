@@ -16,6 +16,7 @@ namespace Microsoft.Azure.Commands.RedisCache.Models
 {
     using Microsoft.Azure.Management.Redis.Models;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class RedisCacheAttributes
     {
@@ -42,6 +43,7 @@ namespace Microsoft.Azure.Commands.RedisCache.Models
             MinimumTlsVersion = cache.MinimumTlsVersion;
             Tag = cache.Tags;
             Zone = cache.Zones;
+            Instances = cache.Instances.ToArray();
         }
 
         public RedisCacheAttributes() { }
@@ -107,5 +109,7 @@ namespace Microsoft.Azure.Commands.RedisCache.Models
         public IDictionary<string, string> Tag { get; protected set; }
 
         public IList<string> Zone { get; protected set; }
+
+        public RedisInstanceDetails[] Instances { get; protected set; }
     }
 }
